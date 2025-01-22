@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheRockShoppApp", "TheRockShoppApp\TheRockShoppApp.csproj", "{AE904654-BEBA-41D3-8A62-7050B6D11CFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheRockShoppApp", "TheRockShoppApp\TheRockShoppApp.csproj", "{AE904654-BEBA-41D3-8A62-7050B6D11CFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheRockShoppApp.Infrastructure", "TheRockShoppApp.Infrastructure\TheRockShoppApp.Infrastructure.csproj", "{AEA3C0B3-BC89-43A7-A6B9-D2B79FB7F2BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheRockShoppApp.Infrastructure", "TheRockShoppApp.Infrastructure\TheRockShoppApp.Infrastructure.csproj", "{AEA3C0B3-BC89-43A7-A6B9-D2B79FB7F2BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheRockShopApp.Core", "TheRockShopApp.Core\TheRockShopApp.Core.csproj", "{21C0FFB5-9219-401D-A717-8463E13D3F3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AEA3C0B3-BC89-43A7-A6B9-D2B79FB7F2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEA3C0B3-BC89-43A7-A6B9-D2B79FB7F2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEA3C0B3-BC89-43A7-A6B9-D2B79FB7F2BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21C0FFB5-9219-401D-A717-8463E13D3F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C0FFB5-9219-401D-A717-8463E13D3F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C0FFB5-9219-401D-A717-8463E13D3F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C0FFB5-9219-401D-A717-8463E13D3F3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

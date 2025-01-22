@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TheRockShopApp.Core.Contracts;
+using TheRockShopApp.Core.Services;
 using TheRockShoppApp.Entities;
 using TheRockShoppApp.Infrastructure.Data;
 using TheRockShoppApp.Infrastructure.Data.Infrastructure;
@@ -15,8 +17,9 @@ namespace TheRockShoppApp
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<ApplicationDbContext>(options => 
+            options.UseLazyLoadingProxies()
+               .UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
@@ -31,7 +34,10 @@ namespace TheRockShoppApp
             .AddRoles<IdentityRole> ()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddTransient<ICategoryServices, CategoryService>();
+            builder.Services.AddTransient<IProductService,  ProductServices>();
+            builder.Services.AddTransient<IManifacturerServices, ManufacturerService>();
+            builder.Services.AddTransient<IOrderService, OrderService>();
             var app = builder.Build();
             app.PrepareDatbase();
             // Configure the HTTP request pipeline.

@@ -18,6 +18,10 @@ namespace TheRockShoppApp.Infrastructure.Data.Infrastructure
             var services = serviceScope.ServiceProvider;
             await RoleSeeder(services);
             await SeedAdministrator(services);
+            var dataCategory = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedCategories(dataCategory);
+            var dataManufacturer = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+           SeedManufacturers(dataManufacturer);
             return app;
         }
         private static async Task RoleSeeder(IServiceProvider serviceProvider)
@@ -55,6 +59,54 @@ namespace TheRockShoppApp.Infrastructure.Data.Infrastructure
                     userManager.AddToRoleAsync(user, "Administrator").Wait();
                 }
             }
+        }
+        private static void SeedCategories(ApplicationDbContext dataCategory)
+        {
+            if (dataCategory.Categories.Any())
+            {
+                return;
+            }
+            dataCategory.Categories.AddRange(new[]
+            {
+                new Category {Name = "Crystals and Minerals"},
+                new Category {Name = "Geodes"},
+                new Category {Name = "Druizes"},
+                new Category {Name = "Jewlery"},
+                new Category {Name = "Braceletes"},
+            }); 
+            dataCategory.SaveChanges();
+        }
+        private static void SeedManufacturers (ApplicationDbContext dataManufacturer)
+        {
+            if (dataManufacturer.Manufacturers.Any())
+            {
+                return;
+            }
+            dataManufacturer.Manufacturers.AddRange(new[]
+{
+                new Manufacturer {Name = "Brazil"},
+                new Manufacturer {Name = "China"},
+                new Manufacturer  {Name = "India"},
+                new Manufacturer {Name = "Russia"},
+                new Manufacturer {Name = "USA"},
+            });
+            dataManufacturer.SaveChanges();
+        }
+        public static async Task<IApplicationBuilder> PrepareDatabase (this IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices.CreateScope();
+            var services = serviceScope.ServiceProvider;
+
+            await RoleSeeder(services);
+            await SeedAdministrator(services);
+
+            var dataCategory = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedCategories(dataCategory);
+
+            var dataManufacturer = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedCategories(dataManufacturer);
+
+            return app;
         }
 
     }
